@@ -67,5 +67,41 @@ namespace RPNCalculatorLibTest
             //Assert
             Assert.AreEqual(expectedResult, actualResult);
         }
+
+        [Test]
+        public void TestSimpleDivision()
+        {
+            // SetUp
+            RPNCalculator rpnCalculator = new RPNCalculator();
+
+            // Act
+            double actualResult = rpnCalculator.compute("100 10 /");
+            double expectedResult = 10.0;
+
+            // Assert
+            Assert.AreEqual(expectedResult, actualResult);
+
+            // Act
+            actualResult = rpnCalculator.compute("1000 10 /");
+            expectedResult = 100.0;
+
+            //Assert
+            Assert.AreEqual(expectedResult, actualResult);
+        }
+
+        [Test]
+        public void TestComplexRpnExpression()
+        {
+            // SetUp
+            RPNCalculator rpnCalculator = new RPNCalculator();
+
+            // Act
+            double actualResult = rpnCalculator.compute("10 5 * 100 20 / -");
+            double expectedResult = 45.0;
+
+            // Assert
+            Assert.AreEqual(expectedResult, actualResult);
+
+        }
     }
 }
