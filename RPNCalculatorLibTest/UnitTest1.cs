@@ -2,12 +2,18 @@ using NUnit.Framework;
 
 namespace RPNCalculatorLibTest
 {
-    public class Tests
+    public class RPNCalculatorTests
     {
         [Test]
-        public void Test1()
+        public void TestSimpleAddition()
         {
-            Assert.Pass();
+            RPNCalculator rpnCalculator = new RPNCalculator();
+
+            double actualResult = rpnCalculator.add("10 15 +");
+            double expectedResult = 25.0;
+
+            Assert.AreEqual(expectedResult, actualResult);
+            
         }
     }
 }
