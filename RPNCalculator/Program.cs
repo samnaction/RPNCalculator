@@ -1,10 +1,10 @@
-﻿using System;
-
-namespace RPNCalculator
+﻿namespace RPNCalculator
 {
-    class Program
+    using System;
+
+    internal class Program
     {
-        static void Main(string[] args)
+        internal static void Main(string[] args)
         {
             Console.WriteLine("Hello World!");
         }
