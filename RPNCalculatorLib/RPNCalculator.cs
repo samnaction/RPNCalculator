@@ -14,7 +14,7 @@
             numberStack = new Stack<double>();
         }
 
-        public double add(string rpnMathExpression)
+        public double compute(string rpnMathExpression)
         {
             string[] rpnTokens = rpnMathExpression.Split(' ');
 
@@ -26,6 +26,24 @@
                     secondNumber = numberStack.Pop();
 
                     result = firstNumber + secondNumber;
+
+                    numberStack.Push(result);
+                }
+                else if (token.Equals("-"))
+                {
+                    secondNumber = numberStack.Pop();
+                    firstNumber = numberStack.Pop();
+
+                    result = firstNumber - secondNumber;
+
+                    numberStack.Push(result);
+                }
+                else if (token.Equals("*"))
+                {
+                    secondNumber = numberStack.Pop();
+                    firstNumber = numberStack.Pop();
+
+                    result = firstNumber * secondNumber;
 
                     numberStack.Push(result);
                 }
