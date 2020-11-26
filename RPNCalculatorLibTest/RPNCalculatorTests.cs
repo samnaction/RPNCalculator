@@ -5,12 +5,23 @@ namespace RPNCalculatorLibTest
 
     public class RPNCalculatorTests
     {
+        private RPNCalculator rpnCalculator;
+        [SetUp]
+        public void Init()
+        {
+            rpnCalculator = new RPNCalculator();
+        }
+
+        [TearDown]
+        public void CleanUp()
+        {
+            rpnCalculator = null;
+        }
+
         [Test]
         public void TestSimpleAddition()
         {
-            // SetUp
-            RPNCalculator rpnCalculator = new RPNCalculator();
-
+            
             // Act
             double actualResult = rpnCalculator.compute("10 15 +");
             double expectedResult = 25.0;
@@ -28,10 +39,7 @@ namespace RPNCalculatorLibTest
 
         [Test]
         public void TestSimpleSubtraction()
-        {
-            // SetUp
-            RPNCalculator rpnCalculator = new RPNCalculator();
-
+        {   
             // Act
             double actualResult = rpnCalculator.compute("100 15 -");
             double expectedResult = 85.0;
@@ -50,9 +58,7 @@ namespace RPNCalculatorLibTest
         [Test]
         public void TestSimpleMultiplication()
         {
-            // SetUp
-            RPNCalculator rpnCalculator = new RPNCalculator();
-
+          
             // Act
             double actualResult = rpnCalculator.compute("100 15 *");
             double expectedResult = 1500.0;
@@ -71,9 +77,7 @@ namespace RPNCalculatorLibTest
         [Test]
         public void TestSimpleDivision()
         {
-            // SetUp
-            RPNCalculator rpnCalculator = new RPNCalculator();
-
+           
             // Act
             double actualResult = rpnCalculator.compute("100 10 /");
             double expectedResult = 10.0;
@@ -92,8 +96,6 @@ namespace RPNCalculatorLibTest
         [Test]
         public void TestComplexRpnExpression()
         {
-            // SetUp
-            RPNCalculator rpnCalculator = new RPNCalculator();
 
             // Act
             double actualResult = rpnCalculator.compute("10 5 * 100 20 / -");

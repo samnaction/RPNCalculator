@@ -4,8 +4,30 @@
     using System.Collections.Generic;
     using System.Linq;
 
-    public class MathFactory
+    public static class MathFactory
     {
+        static Dictionary<string, Type> mathOperators;
+        static MathFactory()
+        {
+            Initialize();
+        }
+
+        private static void Initialize()
+        {
+            Type attributeType = typeof(MathOperatorAttribute);
+            var mathOperatorAtrributes = from assembly in AppDomain.CurrentDomain.GetAssemblies()
+                                         from type in assembly.GetTypes()
+                                         let attributes = type.GetCustomAttributes(attributeType, true)
+                                         where attributes.Any()
+                                         select
+                                             new KeyValuePair<String, Type>(((MathOperatorAttribute)attributes.First())
+                                             .MathOperator, type);
+
+            mathOperators = new Dictionary<string, Type>();
+            foreach (var item in mathOperatorAtrributes)
+                mathOperators.Add(item.Key, item.Value);
+        }
+
         public static IMathOperator GetMathObject(string mathOperator)
         {
             IMathOperator mathOperation = null;
@@ -32,19 +54,6 @@
 
         public static IMathOperator GetMathObjectByReflection(string mathOperator)
         {
-            Type attributeType = typeof(MathOperatorAttribute);
-            var mathOperatorAtrributes = from assembly in AppDomain.CurrentDomain.GetAssemblies()
-                                         from type in assembly.GetTypes()
-                                         let attributes = type.GetCustomAttributes(attributeType, true)
-                                         where attributes.Any()
-                                         select
-                                             new KeyValuePair<String, Type>(((MathOperatorAttribute)attributes.First())
-                                             .MathOperator,type);
-
-            Dictionary<string, Type> mathOperators = new Dictionary<string, Type>();
-            foreach (var item in mathOperatorAtrributes)
-                mathOperators.Add(item.Key, item.Value);
-
             IMathOperator mathOperation = (IMathOperator)Activator.CreateInstance(mathOperators[mathOperator]);
             return mathOperation;
         }
