@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace RPNCalculatorLib
+﻿namespace RPNCalculatorLib
 {
+    [MathOperatorAttribute("+")]
     public class Addition : IMathOperator
     {
         public double compute(double firstInput, double secondInput)

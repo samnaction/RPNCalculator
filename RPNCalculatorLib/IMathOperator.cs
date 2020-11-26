@@ -1,6 +1,6 @@
 ﻿namespace RPNCalculatorLib
 {
-    interface IMathOperator
+    public interface IMathOperator
     {
         double compute(double firstInput, double secondInput);
     }

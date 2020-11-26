@@ -101,7 +101,6 @@ namespace RPNCalculatorLibTest
 
             // Assert
             Assert.AreEqual(expectedResult, actualResult);
-
         }
     }
 }
